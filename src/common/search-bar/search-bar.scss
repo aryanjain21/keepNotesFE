@@ -1,0 +1,25 @@
+@import '../../sass/all.scss';
+
+.search_area {
+    .form_control {
+        position: relative;
+        padding: 0;
+        overflow: hidden;
+        .icon_area {
+            position: absolute;
+            left: 12px;
+            top: 6px;
+        }
+        .form_input {
+            width: 75%;
+            font-size: 14px;
+            line-height: 16px;
+            outline: none;
+            padding: 11px 50px;
+            border: none;
+            color: $color_light_gray;
+            background-color: $color_light_gray_1;
+            @include font_roboto_medium;
+        }
+    }
+}

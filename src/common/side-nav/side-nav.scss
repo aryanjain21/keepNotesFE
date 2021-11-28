@@ -1,0 +1,49 @@
+@import '../../sass/all.scss';
+
+.side_nav_container {
+    height: calc(100vh - 9vh);
+    background-color: antiquewhite;
+    .nav_list {
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: width 200ms ease-out;
+        .list {
+            height: 30px;
+            margin-bottom: 24px;
+            .icon {
+
+            }
+            .txt {
+                display: none;
+                // @include breakpoint(sm) {
+                //     display: block;
+                //     font-size: 16px;
+                //     color: $color_light_gray;
+                //     margin-left: 16px;
+                //     @include font_roboto_bold;
+                // }
+            }
+            @include breakpoint(sm) {
+                display: flex;
+                align-items: center;
+            }
+            &.notes {
+                margin-top: 16px;
+            }
+        }
+        &:hover {
+            width: 250px;
+            padding-left: 20px;
+            align-items: flex-start;
+            transition: width 200ms ease;
+        }
+        &.show_list {
+            width: 250px;
+            padding-left: 20px;
+            align-items: flex-start;
+            transition: width 200ms ease;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import '../../sass/all.scss';
+
+.note_bar_container {
+    input {
+        width: 100%;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 12px 20px;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        @include breakpoint(sm) {
+            width: 600px;
+        }
+    }
+    @include breakpoint(sm) {
+        margin: 32px auto 16px auto;
+    }
+}
