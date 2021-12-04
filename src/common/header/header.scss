@@ -11,12 +11,13 @@
         .section_one {
             display: flex;
             align-items: center;
-            padding-right: 24px;
             .menu_icon {
+                cursor: pointer;
                 padding: 12px;
                 margin-right: $semi_half_spacing;
             }
             .logo {
+                cursor: pointer;
                 width: max-content;
                 font-size: 22px;
                 line-height: 24px;
@@ -24,22 +25,41 @@
                 margin-right: 24px;
                 @include font_roboto_medium;
             }
+            @include breakpoint(sm) {     
+                padding-right: 24px;
+            }
         }
         .section_two {
             width: 100%;
             display: flex;
+            justify-content: space-evenly;
             align-items: center;
             .search {
+                display: none;
                 width: 60%;
                 padding: 0 24px 0 12px;
+                @include breakpoint(sm) {
+                    display: block;
+                }
             }
-           .mr_24 {
-                margin-right: 24px;
+           .keep_options {
+               display: flex;
+               align-items: center;
+                .mr_24 {
+                    cursor: pointer;
+                    margin-right: 24px;
+                }
+                .search_icon {
+                    @include breakpoint(sm) {
+                        display: none;
+                    }
+                }
            }
         }
         .section_three {
             .login {
                 margin-right: 24px;
+                cursor: pointer;
             }
         }
     }

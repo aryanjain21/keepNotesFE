@@ -22,4 +22,21 @@
             @include font_roboto_medium;
         }
     }
+    &.mobile_search_area {
+        .form_control {
+            width: 100%;
+            .icon_area {
+                top: 22px;
+            }
+            .form_input {
+                width: 100%;
+                font-size: 16px;
+                line-height: 24px;
+                padding: 21px 50px;
+                color: $color_black;
+                background-color: $color_off_white;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        }
+    }
 }
