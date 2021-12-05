@@ -4,7 +4,7 @@ import ShowPassword from '../../assets/icons/open_eye.svg';
 import HidePassword from '../../assets/icons/close_eye.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import {signUp} from '../../config';
+import {signUp} from '../../services/api';
 import {toast} from 'react-toastify';
 
 const SignUp = (props) => {

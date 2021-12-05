@@ -1,6 +1,7 @@
 import React from 'react';
 import './side-nav.scss';
 import Notes from '../../assets/icons/notes.svg';
+import Archive from '../../assets/icons/archive.svg';
 import Trash from '../../assets/icons/trash.svg';
 
 const SideNav = (props) => {
@@ -14,19 +15,19 @@ const SideNav = (props) => {
                     <div className='icon'>
                         <img src={Notes} />
                     </div>
-                    <span className='txt'>Note</span>
+                    {showSideNav && <span className='txt'>Note</span>}
+                </li>
+                <li className='list'>
+                    <div className='icon'>
+                        <img src={Archive} />
+                    </div>
+                    {showSideNav && <span className='txt'>Archive</span>}
                 </li>
                 <li className='list'>
                     <div className='icon'>
                         <img src={Trash} />
                     </div>
-                    <span className='txt'>Archive</span>
-                </li>
-                <li className='list'>
-                    <div className='icon'>
-                        <img src={Trash} />
-                    </div>
-                    <span className='txt'>Trash</span>
+                    {showSideNav && <span className='txt'>Trash</span>}
                 </li>
             </ul>
         </div>

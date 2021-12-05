@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './header.scss';
+import Logo from '../../assets/icons/keep_notes_icon.png';
 import Hamburger from '../../assets/icons/hamburger.svg';
 import Setting from '../../assets/icons/settings.svg';
+import Refresh from '../../assets/icons/refresh.svg';
 import GridView from '../../assets/icons/grid_view.svg';
+import ListView from '../../assets/icons/list_view.svg';
 import SearchBar from '../search-bar/search-bar';
 import SearchIcon from '../../assets/icons/search.svg';
 
 const Header = (props) => {
 
-    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen } = props;
+    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView } = props;
     const [mobileSearch, setMobileSearch] = useState(false);
 
     return (
@@ -19,7 +22,7 @@ const Header = (props) => {
                         <div className='menu_icon' onClick={() => setShowSideNav(!showSideNav)}>
                             <img src={Hamburger} />
                         </div>
-                        <div className='logo'>KN</div>
+                        <div className='logo'><span><img src={Logo} /></span> KN</div>
                     </div>
                     <div className='section_two'>
                         <div className='search'>
@@ -30,10 +33,10 @@ const Header = (props) => {
                                 <img src={SearchIcon} />
                             </div>
                             <div className='mr_24 refresh_icon'>
-                                <img src={GridView} />
+                                <img src={Refresh} />
                             </div>
-                            <div className='mr_24 grid_icon'>
-                                <img src={GridView} />
+                            <div className='mr_24 grid_icon' onClick={() => setView(!view)}>
+                                <img src={view ? ListView : GridView} />
                             </div>
                             <div className='mr_24 setting_icon'>
                                 <img src={Setting} />

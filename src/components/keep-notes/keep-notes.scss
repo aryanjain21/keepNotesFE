@@ -8,13 +8,16 @@
         position: fixed;
     }
     .notes_section {
-        display: flex;
-        justify-content: center;
-        padding: 48px 0;
-        margin-left: 32px;
+        width: 70%;
+        margin: 0 auto;
+        margin-left: 110px;
         @include breakpoint(sm) {
+            width: 60%;
             padding: 0;
             margin: 0 auto 16px auto;
+        }
+        @include breakpoint(md) {
+            width: 40%;
         }
     }
 }

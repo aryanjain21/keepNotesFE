@@ -17,6 +17,9 @@
                 margin-right: $semi_half_spacing;
             }
             .logo {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 cursor: pointer;
                 width: max-content;
                 font-size: 22px;
@@ -24,6 +27,16 @@
                 color: $color_dark_gray;
                 margin-right: 24px;
                 @include font_roboto_medium;
+                span {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 8px;
+                    img {
+                        width: 100%;
+                        height: 24px;
+                        object-fit: cover;
+                    }
+                }
             }
             @include breakpoint(sm) {     
                 padding-right: 24px;

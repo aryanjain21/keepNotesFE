@@ -13,6 +13,7 @@ const KeepNotes = () => {
     const [showSideNav, setShowSideNav] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [signUp, setSignUp] = useState(false);
+    const [view, setView] = useState(false);
 
     const handleRequestCloseFunc = () => {
         setIsOpen(false);
@@ -22,7 +23,7 @@ const KeepNotes = () => {
     return (
         <div className='keep_notes_container'>
             <div className='header_section'>
-                <Header showSideNav={showSideNav} setShowSideNav={setShowSideNav} modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+                <Header showSideNav={showSideNav} setShowSideNav={setShowSideNav} view={view} setView={setView} modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
             </div>
             <div className='nav_menu'>
                 <SideNav showSideNav={showSideNav} />
