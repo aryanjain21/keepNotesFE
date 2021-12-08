@@ -1,10 +1,13 @@
 import React from 'react';
 import './note-bar.scss';
 
-const NoteBar = () => {
-    return(
+const NoteBar = (props) => {
+
+    const { setChangeNote } = props;
+
+    return (
         <div className='note_bar_container'>
-            <input type="text" placeholder='Take a note...' />
+            <input type="text" placeholder='Take a note...' autoFocus onClick={() => setChangeNote(true)} />
         </div>
     );
 };

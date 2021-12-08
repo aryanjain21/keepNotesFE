@@ -56,15 +56,16 @@ const SignUp = (props) => {
                 initialValues={InitialValues}
                 validationSchema={ValidationsSchema}
                 onSubmit={async (values) => {
-                    console.log(values)
                     try {
                         let res = await signUp(values);
-                        let user = res.data.data;
-                        toast.success(res.data.message);
-                        handleRequestCloseFunc();
-                        console.log('resp signup', res)
+                        if(res.data.status == '200') {
+                            toast.success(res.data.message);
+                            let user = res.data.data;
+                            localStorage.setItem('setUser', JSON.stringify({firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token}));
+                            handleRequestCloseFunc();
+                        }
                     } catch (error) {
-                        console.log('error signup', error)
+                        toast.error(error.response && error.response.data && error.response.data.message && error.response.data.message);
                     }
                 }}>
                 <Form className='control_area'>

@@ -4,10 +4,12 @@ import ShowPassword from '../../assets/icons/open_eye.svg';
 import HidePassword from '../../assets/icons/close_eye.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { signIn } from '../../services/api';
+import { toast } from 'react-toastify';
 
 const Login = (props) => {
 
-    const { signUp, setSignUp } = props;
+    const { signUp, setSignUp, handleRequestCloseFunc } = props;
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -40,8 +42,18 @@ const Login = (props) => {
             <Formik
                 initialValues={InitialValues}
                 validationSchema={ValidationSchema}
-                onSubmit={(values) => {
-                    console.log(values)
+                onSubmit={async (values) => {
+                    try {
+                        const res = await signIn(values);
+                        if (res.data.status == '200') {
+                            toast.success(res.data.message);
+                            let user = res.data.data;
+                            localStorage.setItem('setUser', JSON.stringify({firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token}));
+                            handleRequestCloseFunc();
+                        }
+                    } catch (error) {
+                        toast.error(error.response && error.response.data && error.response.data.message && error.response.data.message);
+                    }
                 }}>
                 <Form className='control_area'>
                     <div className='form_control'>
@@ -62,7 +74,7 @@ const Login = (props) => {
                         <ErrorMessage className='error' name="password" component="div" />
                     </div>
                     <div className='btn_area'>
-                        <button>Sign In</button>
+                        <button type='submit'>Sign In</button>
                     </div>
                 </Form>
             </Formik>
