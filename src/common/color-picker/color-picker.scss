@@ -1,0 +1,26 @@
+@import '../../sass/all.scss';
+
+.color_section {
+    .color {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        margin: 4px;
+        &:hover {
+            &::after {
+                content: attr(data-tooltip);
+                width: max-content;
+                position: absolute;
+                font-size: 12px;
+                bottom: -24px;
+                left: -6px;
+                padding: 4px 6px;
+                border-radius: 4px;
+                color: $color_white;
+                z-index: 10;
+                background-color: $color_light_gray_2;
+            }
+        }
+    }
+}

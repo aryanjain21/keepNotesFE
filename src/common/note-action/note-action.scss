@@ -3,6 +3,21 @@
 .notes_option {
     display: flex;
     align-items: center;
+    position: relative;
+    .color_picker {
+        display: none;
+        width: 136px;
+        position: absolute;
+        top: -95px;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-radius: 4px 0 4px 4px;
+        background-color: $color_off_white_1;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.20);
+        &.show_options {
+            display: flex;
+        }
+    }
     .icon {
         width: 20px;
         height: 20px;
