@@ -4,6 +4,7 @@
     padding-top: 32px;
     // background-color: $color_light_gray;
     .note_wrapper {
+        position: relative;
         display: flex;
         border-radius: 10px;
         flex-direction: column;
@@ -12,6 +13,11 @@
         0 4px 4px rgba(0,0,0,0.12), 
         0 8px 8px rgba(0,0,0,0.12),
         0 16px 16px rgba(0,0,0,0.12);
+        .pin_note {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+        }
         .title_section {
             height: 22px !important;
             border: none;
@@ -26,30 +32,7 @@
         }
         .text_1 {
             resize: none;
-        }
-        .notes_option {
-            display: flex;
-            align-items: center;
-            .icon {
-                width: 20px;
-                height: 20px;
-                margin: 0 6px;
-                padding: 8px;
-                cursor: pointer;
-                img {
-                    width: 100%;
-                    height: 20px;
-                    object-fit: cover;
-                }
-            }
-            .close {
-                font-size: 16px;
-                margin: 0 24px 0 auto;
-                padding: 8px 0;
-                cursor: pointer;
-                color: $color_light_gray_2;
-                @include font_roboto_bold;
-            }
+            padding-right: 36px;
         }
     }
 }

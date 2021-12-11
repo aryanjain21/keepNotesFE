@@ -19,7 +19,7 @@ const Header = (props) => {
             {!mobileSearch ?
                 <div className='inner_wrapper'>
                     <div className='section_one'>
-                        <div className='menu_icon' onClick={() => setShowSideNav(!showSideNav)}>
+                        <div className='menu_icon' data-tooltip="Main menu" onClick={() => setShowSideNav(!showSideNav)}>
                             <img src={Hamburger} />
                         </div>
                         <div className='logo'><span><img src={Logo} /></span> KN</div>
@@ -29,16 +29,16 @@ const Header = (props) => {
                             <SearchBar />
                         </div>
                         <div className='keep_options'>
-                            <div className='mr_24 search_icon' onClick={() => setMobileSearch(!mobileSearch)}>
+                            <div className='mr_24 search_icon' data-tooltip="Search" onClick={() => setMobileSearch(!mobileSearch)}>
                                 <img src={SearchIcon} />
                             </div>
-                            <div className='mr_24 refresh_icon'>
+                            <div className='mr_24 refresh_icon' data-tooltip="Refresh">
                                 <img src={Refresh} />
                             </div>
-                            <div className='mr_24 grid_icon' onClick={() => setView(!view)}>
+                            <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>
                                 <img src={view ? ListView : GridView} />
                             </div>
-                            <div className='mr_24 setting_icon'>
+                            <div className='mr_24 setting_icon' data-tooltip="Settings">
                                 <img src={Setting} />
                             </div>
                         </div>

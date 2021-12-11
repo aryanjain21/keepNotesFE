@@ -12,9 +12,27 @@
             display: flex;
             align-items: center;
             .menu_icon {
+                position: relative;
                 cursor: pointer;
-                padding: 12px;
+                padding: 10px;
                 margin-right: $semi_half_spacing;
+                &:hover {
+                    border-radius: 50%;
+                    background-color: $color_light_gray_1;
+                    &::after {
+                        content: attr(data-tooltip);
+                        width: max-content;
+                        position: absolute;
+                        font-size: 12px;
+                        bottom: -24px;
+                        left: -6px;
+                        padding: 4px 6px;
+                        border-radius: 4px;
+                        color: $color_white;
+                        z-index: 10;
+                        background-color: $color_light_gray_2;
+                    }
+                }
             }
             .logo {
                 display: flex;
@@ -60,7 +78,24 @@
                align-items: center;
                 .mr_24 {
                     cursor: pointer;
-                    margin-right: 24px;
+                    padding: 10px;
+                    position: relative;
+                    &:hover {
+                        border-radius: 50%;
+                        background-color: $color_light_gray_1;
+                        &::after {
+                            content: attr(data-tooltip);
+                            width: max-content;
+                            position: absolute;
+                            font-size: 12px;
+                            bottom: -24px;
+                            left: -6px;
+                            padding: 4px 6px;
+                            border-radius: 4px;
+                            color: $color_white;
+                            background-color: $color_light_gray_2;
+                        }
+                    }
                 }
                 .search_icon {
                     @include breakpoint(sm) {
