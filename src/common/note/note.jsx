@@ -15,8 +15,8 @@ const Note = (props) => {
 
     const handleInput = (inputType) => {
         setNote({
-            title: inputType.key == 'title' ? inputType.value : note.title, //(ref && ref.current && ref.current.children && ref.current.children.title && ref.current.children.title.value) : note.title,
-            note: inputType.key == 'note' ? inputType.value : note.note, //(ref && ref.current && ref.current.children && ref.current.children.note && ref.current.children.note.value) : note.note,
+            title: inputType.key == 'title' ? inputType.value : note.title,
+            note: inputType.key == 'note' ? inputType.value : note.note,
             isArchived: note.isArchived,
             isPinned: note.isPinned
         });
