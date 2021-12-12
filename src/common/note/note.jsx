@@ -34,9 +34,11 @@ const Note = (props) => {
                     isPinned: note.isPinned
                 }
                 let res = await addNote(newNote);
+                setNote({ title: '', note: '', isArchived: 0, isPinned: 0 });
                 toast.success(res.data.message);
             }
         } catch (error) {
+            setNote({ title: '', note: '', isArchived: 0, isPinned: 0 });
             toast.error(error.response && error.response.data && error.response.data.message && error.response.data.message);
         }
     }
@@ -46,9 +48,9 @@ const Note = (props) => {
             <OutsideClickHandler onOutsideClick={onOutsideClick}>
                 <div className='note_wrapper'>
                     <div className='pin_note' onClick={handlePinned}><img src={note.isPinned ? Pinned : Pin} /></div>
-                    <input className='title_section text_1' name="title" id="title" rows='1' placeholder='Title' value={note.title} onChange={(e) => handleInput({ key: 'title', value: e.target.value })} />
-                    <textarea className='title_section note_area' rows={1} name="note" id="note" placeholder='Take a note...' autoFocus value={note.note} onChange={(e) => handleInput({ key: 'note', value: e.target.value })}></textarea>
-                    <NoteAction colorList={colorList} note={note} setNote={setNote} onOutsideClick={onOutsideClick} handleInput={handleInput} handleColor={handleColor} />
+                    <input style={{backgroundColor: colorList[selectedColor -1].color}} className='title_section text_1' name="title" id="title" rows='1' placeholder='Title' value={note.title} onChange={(e) => handleInput({ key: 'title', value: e.target.value })} />
+                    <textarea style={{backgroundColor: colorList[selectedColor -1].color}}  className='title_section note_area' rows={1} name="note" id="note" placeholder='Take a note...' autoFocus value={note.note} onChange={(e) => handleInput({ key: 'note', value: e.target.value })}></textarea>
+                    <NoteAction colorList={colorList} note={note} setNote={setNote} selectedColor={selectedColor} onOutsideClick={onOutsideClick} handleInput={handleInput} handleColor={handleColor} />
                 </div>
             </OutsideClickHandler>
         </div>

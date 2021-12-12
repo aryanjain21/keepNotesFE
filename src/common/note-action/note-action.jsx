@@ -7,7 +7,7 @@ import ColorPicker from '../color-picker/color-picker';
 
 const NoteAction = (props) => {
 
-    const { colorList, note, setNote, onOutsideClick, handleInput, handleColor } = props;
+    const { colorList, note, setNote, selectedColor, onOutsideClick, handleInput, handleColor } = props;
     const [showColor, setShowColor] = useState(false);
 
     const handleArchive = () => {
@@ -18,7 +18,7 @@ const NoteAction = (props) => {
     }
 
     return (
-        <div className='notes_option'>
+        <div className='notes_option' style={{backgroundColor: colorList[selectedColor -1].color}}>
             <div className={`color_picker ${showColor ? 'show_options' : ''}`} onMouseLeave={() => setShowColor(!showColor)}>
                 <ColorPicker colorList={colorList} handleColor={handleColor} />
             </div>

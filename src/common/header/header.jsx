@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './header.scss';
+import { useUser } from '../../context/userContext';
 import Logo from '../../assets/icons/keep_notes_icon.png';
 import Hamburger from '../../assets/icons/hamburger.svg';
 import Setting from '../../assets/icons/settings.svg';
@@ -8,11 +9,14 @@ import GridView from '../../assets/icons/grid_view.svg';
 import ListView from '../../assets/icons/list_view.svg';
 import SearchBar from '../search-bar/search-bar';
 import SearchIcon from '../../assets/icons/search.svg';
+import UserProfile from '../user-profile/user-profile';
 
 const Header = (props) => {
 
+    const { user } = useUser();
     const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView } = props;
     const [mobileSearch, setMobileSearch] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
 
     return (
         <div className='header_container'>
@@ -44,9 +48,13 @@ const Header = (props) => {
                         </div>
                     </div>
                     <div className='section_three'>
-                        <div className='login' onClick={() => setIsOpen(!modalIsOpen)}>Login</div>
-                        {false && <div className='profile_image'></div>}
+                        {user.token ?
+                            <div className='profile_image' onMouseOver={() => setShowProfile(!showProfile)}>{user && user.firstName && user.firstName.charAt(0).toUpperCase()}{user && user.lastName && user.lastName.charAt(0).toUpperCase()}</div>
+                            :
+                            <div className='login' onClick={() => setIsOpen(!modalIsOpen)}>Login</div>
+                        }
                     </div>
+                    <div className={`profile_section ${showProfile ? 'active' : ''}`} onMouseLeave={() => setShowProfile(!showProfile)}><UserProfile /></div>
                 </div>
                 :
                 <div className='mobile_search_section'>

@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { UserProvide } from './context/userContext';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvide>
+      <App />
+    </UserProvide>
   </React.StrictMode>,
   document.getElementById('root')
 );

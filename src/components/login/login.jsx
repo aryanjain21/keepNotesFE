@@ -4,13 +4,14 @@ import ShowPassword from '../../assets/icons/open_eye.svg';
 import HidePassword from '../../assets/icons/close_eye.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { useUser } from '../../context/userContext';
 import { signIn } from '../../services/api';
 import { toast } from 'react-toastify';
 
 const Login = (props) => {
 
     const { signUp, setSignUp, handleRequestCloseFunc } = props;
-
+    const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
 
     const InitialValues = {
@@ -48,7 +49,8 @@ const Login = (props) => {
                         if (res.data.status == '200') {
                             toast.success(res.data.message);
                             let user = res.data.data;
-                            localStorage.setItem('setUser', JSON.stringify({firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token}));
+                            localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List' }));
+                            userDispatch({ type: 'SIGNIN', payload: user });
                             handleRequestCloseFunc();
                         }
                     } catch (error) {

@@ -1,0 +1,33 @@
+@import '../../sass/all.scss';
+
+.user_profile_container {
+    text-align: center;
+    color: $color_border;
+    .profile {
+        width: fit-content;
+        font-size: 14px;
+        padding: 16px;
+        margin: 0 auto;
+        margin-bottom: 12px;
+        border-radius: 100%;
+        border: 1px solid;
+        background-color: $color_light_gray_1;
+    }
+    .name, .email {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+    .name {
+        text-transform: capitalize;
+    }
+    .btn_area {
+        cursor: pointer;
+        padding: 12px;
+        border-radius: 10px;
+        background-color: $color_beige;
+        button {
+            color: $color_dark_gray;
+        }
+    }
+}
