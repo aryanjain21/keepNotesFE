@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { UserProvide } from './context/userContext';
+import { NoteProvider } from './context/noteContext';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvide>
-      <App />
+      <NoteProvider>
+        <App />
+      </NoteProvider>
     </UserProvide>
   </React.StrictMode>,
   document.getElementById('root')
