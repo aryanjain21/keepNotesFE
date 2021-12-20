@@ -11,6 +11,7 @@ const userReducer = (state, action) => {
                 lastName: action.payload.lastName,
                 email: action.payload.email,
                 token: action.payload.token,
+                screen: user ? user.screen : 'Notes',
                 view: user ? user.view : 'List'
             };
         case 'SIGNUP':
@@ -20,8 +21,15 @@ const userReducer = (state, action) => {
                 lastName: action.payload.lastName,
                 email: action.payload.email,
                 token: action.payload.token,
+                screen: 'Notes',
                 view: 'List'
             };
+        case 'SCREEN_PREFERENCE':
+            return {
+                ...state,
+                screen: action.payload.screen ? action.payload.screen : state.screen,
+                view: action.payload.view ? action.payload.view : state.view
+            }
         case 'LOGOUT':
             return {
                 firstName: '',
@@ -39,6 +47,7 @@ let initialState = {
     lastName: '',
     email: '',
     token: '',
+    screen: '',
     view: 'List'
 }
 
@@ -49,6 +58,7 @@ export const UserProvide = ({ children }) => {
         initialState.lastName = user.lastName
         initialState.email = user.email
         initialState.token = user.token
+        initialState.screen = user.screen
         initialState.view = user.view
     }
 

@@ -2,8 +2,10 @@ import axios from 'axios';
 
 (function (axios) {
     axios.interceptors.request.use(function (req) {
-        let user = JSON.parse(localStorage.getItem('setUser'));
-        req.headers.token = user && user.token;
+        if(req.url.includes('api')) {
+            let user = JSON.parse(localStorage.getItem('setUser')) || {};
+            req.headers.token = user.token;
+        }
         return req;
     }, function (error) {
         // Do something with request error
@@ -14,6 +16,7 @@ import axios from 'axios';
         if (error.response) {
             if (error.response.status === 401) {
                 localStorage.removeItem('setUser');
+                // typeof window !== 'undefined' && window.location.reload();
                 return Promise.reject(error);
             } else return Promise.reject(error);
         } else if (error.request) {
