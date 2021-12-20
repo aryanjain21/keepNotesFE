@@ -14,7 +14,7 @@ import UserProfile from '../user-profile/user-profile';
 const Header = (props) => {
 
     const { user } = useUser();
-    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView } = props;
+    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView, getAllNote } = props;
     const [mobileSearch, setMobileSearch] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
 
@@ -36,7 +36,7 @@ const Header = (props) => {
                             <div className='mr_24 search_icon' data-tooltip="Search" onClick={() => setMobileSearch(!mobileSearch)}>
                                 <img src={SearchIcon} />
                             </div>
-                            <div className='mr_24 refresh_icon' data-tooltip="Refresh">
+                            <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={getAllNote}>
                                 <img src={Refresh} />
                             </div>
                             <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>

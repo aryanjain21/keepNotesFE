@@ -122,11 +122,11 @@
         }
         .profile_section {
             position: absolute;
+            top: 64px;
             right: 0;
             opacity: 0;
             visibility: hidden;
             padding: 16px 12px;
-            bottom: -195px;
             border-radius: 10px;
             background-color: $color_white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.40);
