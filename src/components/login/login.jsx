@@ -49,7 +49,6 @@ const Login = (props) => {
                         if (res.data.status == '200') {
                             toast.success(res.data.message);
                             let user = res.data.data;
-                            console.log('login', user.token)
                             localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List', screen: 'Notes' }));
                             userDispatch({ type: 'SIGNIN', payload: user });
                             handleRequestCloseFunc();
