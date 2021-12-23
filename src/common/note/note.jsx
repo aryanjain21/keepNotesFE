@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './note.scss';
+import ColorList from '../../assets/locales/color.json';
 import Pin from '../../assets/icons/pin.svg';
 import Pinned from '../../assets/icons/pinned.svg';
 import { addNote } from '../../services/api';
 import { toast } from 'react-toastify';
 import autosize from 'autosize';
+import { useNote } from '../../context/noteContext';
 import OutsideClickHandler from 'react-outside-click-handler';
 import NoteAction from '../note-action/note-action';
 
 const Note = (props) => {
 
+    const { noteDispatch } = useNote();
     const { colorList, note, setNote, changeNote, setChangeNote, handlePinned, selectedColor, handleColor } = props;
     autosize(document.querySelector('textarea'));
 
@@ -33,7 +36,9 @@ const Note = (props) => {
                     isArchived: note.isArchived,
                     isPinned: note.isPinned
                 }
-                let res = await addNote(newNote);
+                let res = await addNote(newNote); 
+                res.data.data.color = res.data.data.color ? ColorList.find(color => color.key === res.data.data.color).id : 1;
+                noteDispatch({type: 'ADD', payload: res.data.data})
                 setNote({ title: '', note: '', isArchived: 0, isPinned: 0 });
                 toast.success(res.data.message);
             }

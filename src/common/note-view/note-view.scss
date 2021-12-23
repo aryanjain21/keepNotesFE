@@ -1,0 +1,95 @@
+@import '../../sass/all.scss';
+
+.note_view_container {
+    width: 70%;
+    margin: 0 auto;
+    margin-left: 90px;
+    h2 {
+        font-size: 14px;
+        line-height: 14px;
+        margin-bottom: 12px;
+        color: $color_light_gray_2;
+        @include font_roboto_bold;
+    }
+    .note_section {
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 12px 12px 0;
+        margin-bottom: 16px;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.50);
+        .pin_note {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+        }
+        .title_section {
+            border: none;
+            outline: none;
+            resize: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            line-height: 20px;
+            overflow-y: hidden;
+            @include font_roboto_medium;
+        }
+        .title {
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 4px;
+            color: $color_dark_gray;
+            @include font_roboto_bold;
+        }
+        .note {
+            font-size: 14px;
+            line-height: 14px;
+            margin-bottom: 4px;
+            color: $color_light_gray;
+            @include font_roboto_medium;
+        }
+        .note_action {
+            margin: 0 -12px;
+        }
+    }
+    &.grid_view {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .note_section {
+            margin: 0 0 12px;
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+            @include breakpoint(sm) {
+                width: 45%;
+            }
+            @include breakpoint(md) {
+                width: 46%;
+            }
+            @include breakpoint(lg) {
+                margin-right: 12px;
+            }
+        }
+        @include breakpoint(sm) {
+            width: 80%;
+            margin: 0 auto;
+        }
+        @include breakpoint(md) {
+            width: 75%;
+        }
+        @include breakpoint(lg) {
+            justify-content: unset;
+        }
+    }
+    @include breakpoint(sm) {
+        width: 60%;
+        margin: 0 auto;
+    }
+    @include breakpoint(md) {
+        width: 40%;
+    }
+}
