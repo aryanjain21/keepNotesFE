@@ -42,9 +42,9 @@ const Header = (props) => {
                             <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>
                                 <img src={view ? ListView : GridView} />
                             </div>
-                            <div className='mr_24 setting_icon' data-tooltip="Settings">
+                            {/* <div className='mr_24 setting_icon' data-tooltip="Settings">
                                 <img src={Setting} />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className='section_three'>

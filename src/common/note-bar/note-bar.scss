@@ -3,7 +3,7 @@
 .note_bar_container {
     padding-top: 32px;
     input {
-        // width: 100%;
+        width: 84%;
         font-size: 16px;
         line-height: 20px;
         padding: 12px 20px;
@@ -12,10 +12,13 @@
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         @include breakpoint(sm) {
-            width: 600px;
+            width: 84%;
+        }
+        @include breakpoint(sm) {
+            width: 90%;
+        }
+        @include breakpoint(sm) {
+            width: 93%;
         }
     }
-    // @include breakpoint(sm) {
-    //     margin: 32px auto 16px auto;
-    // }
 }
