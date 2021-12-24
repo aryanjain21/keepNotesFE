@@ -15,7 +15,7 @@ const NoteAction = (props) => {
 
     const { user } = useUser();
     const { noteDispatch } = useNote();
-    const { colorList, note, setNote, selectedColor, onOutsideClick, handleInput, handleColor, updateNotes, listView, updatedArchive } = props;
+    const { colorList, note, setNote, selectedColor, onOutsideClick, handleInput, handleColor, updateNotes, listView, updatedArchive, setLoader } = props;
     const [showColor, setShowColor] = useState(false);
 
     const updateColor = (id) => {
@@ -41,11 +41,13 @@ const NoteAction = (props) => {
 
     const handleDeleteNote = async (deleteId) => {
         try {
+            setLoader(true);
             let res = await deleteNote({ noteId: deleteId });
             toast.success(res.data.message);
+            setLoader(false);
             noteDispatch({type: 'DELETE', payload: deleteId})
         } catch (error) {
-
+            setLoader(false);
         }
     }
 

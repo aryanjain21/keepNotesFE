@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 const Login = (props) => {
 
-    const { signUp, setSignUp, handleRequestCloseFunc } = props;
+    const { signUp, setSignUp, handleRequestCloseFunc, setLoader } = props;
     const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -33,7 +33,26 @@ const Login = (props) => {
                 /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
                 'Password must contain at least one number, one special character & length must be 6 to 16 character/digits.'
             )
-    })
+    });
+
+    const guestLogin = async () => {
+        try {
+            let login = { email: 'admin@gmail.com', password: 'admin@123' };
+            setLoader(true);
+            const res = await signIn(login);
+            if (res.data.status == '200') {
+                toast.success(res.data.message);
+                setLoader(false);
+                let user = res.data.data;
+                localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List', screen: 'Notes' }));
+                userDispatch({ type: 'SIGNIN', payload: user });
+                handleRequestCloseFunc();
+            }
+        } catch (error) {
+            setLoader(true);
+            toast.error(error?.response?.data?.message);
+        }
+    }
 
     return (
         <div className='login_container'>
@@ -45,16 +64,19 @@ const Login = (props) => {
                 validationSchema={ValidationSchema}
                 onSubmit={async (values) => {
                     try {
+                        setLoader(true);
                         const res = await signIn(values);
                         if (res.data.status == '200') {
                             toast.success(res.data.message);
+                            setLoader(false);
                             let user = res.data.data;
                             localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, view: 'List', screen: 'Notes' }));
                             userDispatch({ type: 'SIGNIN', payload: user });
                             handleRequestCloseFunc();
                         }
                     } catch (error) {
-                        toast.error(error.response && error.response.data && error.response.data.message && error.response.data.message);
+                        setLoader(true);
+                        toast.error(error?.response?.data?.message);
                     }
                 }}>
                 <Form className='control_area'>
@@ -80,7 +102,10 @@ const Login = (props) => {
                     </div>
                 </Form>
             </Formik>
-            <div className='sign_up_link'>Don’t have an Account yet? <a className='link' onClick={() => setSignUp(!signUp)} href='javascript:void(0);'>Sign Up</a></div>
+            <div className='guest_user'>
+                Are you <a onClick={guestLogin}>Guest User</a> ?
+            </div>
+            <div className='sign_up_link'>Don’t have an Account yet ? <a className='link' onClick={() => setSignUp(!signUp)}>Sign Up</a></div>
         </div>
     );
 }

@@ -34,6 +34,7 @@
             font-size: 16px;
             line-height: 20px;
             overflow-y: hidden;
+            pointer-events: none;
             @include font_roboto_medium;
         }
         .title {

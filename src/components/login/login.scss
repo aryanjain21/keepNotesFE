@@ -70,11 +70,14 @@
             }
         }
     }
-    .sign_up_link {
+    .sign_up_link, .guest_user {
         font-size: 14px;
         line-height: 18px;
         color: $color_black;
         text-align: center;
         @include font_roboto_medium;
+    }
+    .guest_user {
+        margin-bottom: 4px;
     }
 }

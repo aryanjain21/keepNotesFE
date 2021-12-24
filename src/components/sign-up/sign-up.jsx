@@ -4,13 +4,15 @@ import ShowPassword from '../../assets/icons/open_eye.svg';
 import HidePassword from '../../assets/icons/close_eye.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import {signUp} from '../../services/api';
-import {toast} from 'react-toastify';
+import { signUp } from '../../services/api';
+import { useUser } from '../../context/userContext';
+import { toast } from 'react-toastify';
 
 const SignUp = (props) => {
 
-    const { setSignUp, handleRequestCloseFunc } = props;
+    const { setSignUp, handleRequestCloseFunc, setLoader } = props;
 
+    const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -57,14 +59,18 @@ const SignUp = (props) => {
                 validationSchema={ValidationsSchema}
                 onSubmit={async (values) => {
                     try {
+                        setLoader(true);
                         let res = await signUp(values);
-                        if(res.data.status == '200') {
+                        if (res.data.status == '200') {
                             toast.success(res.data.message);
+                            setLoader(false);
                             let user = res.data.data;
-                            localStorage.setItem('setUser', JSON.stringify({firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token}));
+                            localStorage.setItem('setUser', JSON.stringify({ firstName: user.firstName, lastName: user.lastName, email: user.email, token: user.token, screen: 'Notes' }));
+                            userDispatch({ type: 'SIGNUP', payload: user });
                             handleRequestCloseFunc();
                         }
                     } catch (error) {
+                        setLoader(false);
                         toast.error(error.response && error.response.data && error.response.data.message && error.response.data.message);
                     }
                 }}>
@@ -121,7 +127,7 @@ const SignUp = (props) => {
                     </div>
                 </Form>
             </Formik>
-            <div className='sign_in_link'>Already have an Account? <a className='link' onClick={() => setSignUp(false)} href='javascript:void(0);'>Sign In</a></div>
+            <div className='sign_in_link'>Already have an Account? <a className='link' onClick={() => setSignUp(false)}>Sign In</a></div>
         </div>
     );
 }

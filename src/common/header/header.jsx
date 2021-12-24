@@ -3,7 +3,6 @@ import './header.scss';
 import { useUser } from '../../context/userContext';
 import Logo from '../../assets/icons/keep_notes_icon.png';
 import Hamburger from '../../assets/icons/hamburger.svg';
-import Setting from '../../assets/icons/settings.svg';
 import Refresh from '../../assets/icons/refresh.svg';
 import GridView from '../../assets/icons/grid_view.svg';
 import ListView from '../../assets/icons/list_view.svg';
@@ -14,7 +13,7 @@ import UserProfile from '../user-profile/user-profile';
 const Header = (props) => {
 
     const { user } = useUser();
-    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView, getAllNote } = props;
+    const { showSideNav, setShowSideNav, modalIsOpen, setIsOpen, view, setView, getAllNote, setLoader } = props;
     const [mobileSearch, setMobileSearch] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
 
@@ -23,20 +22,20 @@ const Header = (props) => {
             {!mobileSearch ?
                 <div className='inner_wrapper'>
                     <div className='section_one'>
-                        <div className='menu_icon' data-tooltip="Main menu" onClick={() => setShowSideNav(!showSideNav)}>
+                        <div className='menu_icon' onClick={() => setShowSideNav(!showSideNav)}>
                             <img src={Hamburger} />
                         </div>
-                        <div className='logo'><span><img src={Logo} /></span> KN</div>
+                        <div className='logo'><span className='image_area'><img src={Logo} /></span><span className='txt'>Keep Notes</span></div>
                     </div>
                     <div className='section_two'>
                         <div className='search'>
-                            <SearchBar />
+                            <SearchBar setLoader={setLoader} />
                         </div>
                         <div className='keep_options'>
                             <div className='mr_24 search_icon' data-tooltip="Search" onClick={() => setMobileSearch(!mobileSearch)}>
                                 <img src={SearchIcon} />
                             </div>
-                            <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={getAllNote}>
+                            <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={user.token && getAllNote}>
                                 <img src={Refresh} />
                             </div>
                             <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>

@@ -7,15 +7,17 @@ import Trash from '../../assets/icons/trash.svg';
 import { getNotes } from '../../services/api';
 import { useUser } from '../../context/userContext';
 import { useNote } from '../../context/noteContext';
+import { toast } from 'react-toastify';
 
 const SideNav = (props) => {
 
     const { user, userDispatch } = useUser();
     const { noteDispatch } = useNote();
-    const { showSideNav } = props;
+    const { showSideNav, setLoader } = props;
 
     const handleClick = (screen) => {
-        userDispatch({ type: 'SCREEN_PREFERENCE', payload: { screen: screen } })
+        if (user.token) {
+            userDispatch({ type: 'SCREEN_PREFERENCE', payload: { screen: screen } });
         if (screen === "Notes") {
             getAllNotes({ isActive: 1, isArchived: 0 })
         } else if (screen === "Archive") {
@@ -23,11 +25,15 @@ const SideNav = (props) => {
         } else {
             getAllNotes({ isActive: 0 })
         }
-        localStorage.setItem('setUser', JSON.stringify({ ...user, screen: screen }))
+        localStorage.setItem('setUser', JSON.stringify({ ...user, screen: screen }));
+        } else {
+            toast.warn('Please login with your credential');
+        }
     }
 
     const getAllNotes = async (obj) => {
         try {
+            setLoader(true);
             let presentScreen = {
                 section: {
                     isActive: obj && obj.isActive ? obj.isActive : 0,
@@ -35,12 +41,13 @@ const SideNav = (props) => {
                 }
             }
             let res = await getNotes(presentScreen);
+            setLoader(false);
             res.data.data.map(note => {
                 note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
             });
             noteDispatch({ type: 'ALL_NOTE', payload: res.data });
         } catch (error) {
-
+            setLoader(false);
         }
     }
 

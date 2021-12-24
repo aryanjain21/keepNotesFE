@@ -13,9 +13,8 @@ const SearchBar = (props) => {
 
     const { user } = useUser();
     const { noteDispatch } = useNote();
-    const { mobileSearch, setMobileSearch } = props;
+    const { mobileSearch, setMobileSearch, setLoader } = props;
     const [search, setSearch] = useState('');
-    console.log(user.screen)
 
     const searchNote = async (value) => {
         try {
@@ -33,14 +32,17 @@ const SearchBar = (props) => {
                 searchObj.section.isActive = 0
             }
             searchObj.search = value
+            setLoader(true);
             const res = await getNotes(searchObj);
             if (res.data.status == '200') {
+                setLoader(false);
                 res.data.data.map(note => {
                     note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
                 });
                 noteDispatch({ type: 'ALL_NOTE', payload: res.data })
             }
         } catch (error) {
+            setLoader(false);
             toast.warn('Something went wrong...')
         }
     }
@@ -52,7 +54,11 @@ const SearchBar = (props) => {
 
     const handleOnChange = e => {
         setSearch(e?.target?.value);
-        debouncedSave(e?.target?.value);
+        if (user.token) {
+            debouncedSave(e?.target?.value);
+        } else {
+            toast.warn('Please login with your credential');
+        }
     }
 
     return (
