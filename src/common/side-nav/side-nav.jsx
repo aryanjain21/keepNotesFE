@@ -42,9 +42,10 @@ const SideNav = (props) => {
             }
             let res = await getNotes(presentScreen);
             setLoader(false);
-            res.data.data.map(note => {
-                note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
-            });
+            let resArray = res.data.data;
+            for(let i = 0; i< resArray.length; i++) {
+                resArray[i].color = resArray[i].color ? ColorList.find(color => color.key === resArray[i].color).id : 1
+            }
             noteDispatch({ type: 'ALL_NOTE', payload: res.data });
         } catch (error) {
             setLoader(false);

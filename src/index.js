@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { UserProvide } from './context/userContext';
 import { NoteProvider } from './context/noteContext';
@@ -9,7 +10,9 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProvide>
       <NoteProvider>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </NoteProvider>
     </UserProvide>
   </React.StrictMode>,

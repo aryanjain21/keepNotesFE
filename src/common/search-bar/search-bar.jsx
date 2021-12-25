@@ -36,9 +36,10 @@ const SearchBar = (props) => {
             const res = await getNotes(searchObj);
             if (res.data.status === 200) {
                 setLoader(false);
-                res.data.data.map(note => {
-                    note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
-                });
+                let resArray = res.data.data;
+                for(let i = 0; i< resArray.length; i++) {
+                    resArray[i].color = resArray[i].color ? ColorList.find(color => color.key === resArray[i].color).id : 1
+                }
                 noteDispatch({ type: 'ALL_NOTE', payload: res.data })
             }
         } catch (error) {
@@ -46,7 +47,7 @@ const SearchBar = (props) => {
             toast.warn('Something went wrong...')
         }
     }
-
+    // eslint-disable-next-line
     const debouncedSave = useCallback(
         debounce((value) => searchNote(value), 500),
         []

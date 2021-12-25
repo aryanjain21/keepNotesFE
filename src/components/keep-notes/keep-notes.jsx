@@ -59,9 +59,10 @@ const KeepNotes = () => {
                 let allNote = await getNotes(obj);
                 if(allNote.data.status === 200) {
                     setLoader(false);
-                    allNote.data.data.map(note => {
-                        note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
-                    });
+                    let allNoteArray = allNote.data.data;
+                    for(let i = 0; i < allNoteArray.length; i++) {
+                        allNoteArray[i].color = allNoteArray[i].color ? ColorList.find(color => color.key === allNoteArray[i].color).id : 1
+                    }
                     noteDispatch({ type: 'ALL_NOTE', payload: allNote.data });
                 }
             }
@@ -73,6 +74,7 @@ const KeepNotes = () => {
 
     useEffect(() => {
         getAllNote();
+        // eslint-disable-next-line
     }, [user.token])
 
     const updateNotes = async (note) => {

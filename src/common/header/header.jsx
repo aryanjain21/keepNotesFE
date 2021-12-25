@@ -35,7 +35,7 @@ const Header = (props) => {
                             <div className='mr_24 search_icon' data-tooltip="Search" onClick={() => setMobileSearch(!mobileSearch)}>
                                 <img src={SearchIcon} alt='search' />
                             </div>
-                            <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={user.token && getAllNote}>
+                            <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={() => {user.token && getAllNote()}}>
                                 <img src={Refresh} alt='refresh' />
                             </div>
                             <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>
