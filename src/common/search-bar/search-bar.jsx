@@ -66,11 +66,11 @@ const SearchBar = (props) => {
             <div className='form_control'>
                 {!mobileSearch ?
                     <div className='icon_area'>
-                        <img src={Search} />
+                        <img src={Search} alt='search' />
                     </div>
                     :
                     <div className='icon_area' onClick={() => setMobileSearch(!mobileSearch)}>
-                        <img src={BackArrow} />
+                        <img src={BackArrow} alt='back' />
                     </div>
                 }
                 <input className='form_input'

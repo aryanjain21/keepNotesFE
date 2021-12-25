@@ -1,0 +1,94 @@
+@import '../../sass/all.scss';
+
+@keyframes customEnterOverlayAnimation {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes customLeaveOverlayAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes customEnterModalAnimation {
+    0% {
+        transform: scale(0.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes customLeaveModalAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.2);
+    }
+}
+
+.update_note {
+    // margin-top: -32px;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    .pin_note {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+    }
+    .title_section {
+        width: 89%;
+        border: none;
+        outline: none;
+        resize: none;
+        padding: 8px 16px;
+        font-size: 16px;
+        line-height: 20px;
+        overflow-y: hidden;
+        @include font_roboto_medium;
+    }
+    .title {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 4px;
+        color: $color_dark_gray;
+        @include font_roboto_bold;
+    }
+    .note {
+        font-size: 14px;
+        line-height: 14px;
+        margin-bottom: 4px;
+        color: $color_light_gray;
+        @include font_roboto_medium;
+    }
+}
+
+.update_note_modal {
+    max-width: 300px !important;
+    width: 100%;
+    padding: 0 !important;
+    margin-top: -32px;
+    border-radius: 10px;
+    .react-responsive-modal-closeButton {
+        display: none;
+    }
+    @include breakpoint(sm) {
+        max-width: 500px !important;
+    }
+    @include breakpoint(md) {
+        max-width: 420px !important;
+    }
+    @include breakpoint(lg) {
+        max-width: 600px !important;
+    }
+}
