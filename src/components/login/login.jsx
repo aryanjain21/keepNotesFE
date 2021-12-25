@@ -40,7 +40,7 @@ const Login = (props) => {
             let login = { email: 'admin@gmail.com', password: 'admin@123' };
             setLoader(true);
             const res = await signIn(login);
-            if (res.data.status == '200') {
+            if (res.data.status === 200) {
                 toast.success(res.data.message);
                 setLoader(false);
                 let user = res.data.data;
@@ -66,7 +66,7 @@ const Login = (props) => {
                     try {
                         setLoader(true);
                         const res = await signIn(values);
-                        if (res.data.status == '200') {
+                        if (res.data.status === 200) {
                             toast.success(res.data.message);
                             setLoader(false);
                             let user = res.data.data;
@@ -92,7 +92,7 @@ const Login = (props) => {
                         <div className='form_input'>
                             <Field type={showPassword ? 'text' : 'password'} name='password' placeholder='Password' />
                             <div className='icon_area' onClick={() => setShowPassword(!showPassword)}>
-                                <img src={showPassword ? ShowPassword : HidePassword} />
+                                <img src={showPassword ? ShowPassword : HidePassword} alt='eye' />
                             </div>
                         </div>
                         <ErrorMessage className='error' name="password" component="div" />
@@ -103,9 +103,9 @@ const Login = (props) => {
                 </Form>
             </Formik>
             <div className='guest_user'>
-                Are you <a onClick={guestLogin}>Guest User</a> ?
+                Are you <span className='link' onClick={guestLogin}>Guest User</span> ?
             </div>
-            <div className='sign_up_link'>Don’t have an Account yet ? <a className='link' onClick={() => setSignUp(!signUp)}>Sign Up</a></div>
+            <div className='sign_up_link'>Don’t have an Account yet ? <span className='link' onClick={() => setSignUp(!signUp)}>Sign Up</span></div>
         </div>
     );
 }

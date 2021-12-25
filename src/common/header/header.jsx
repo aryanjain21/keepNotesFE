@@ -23,9 +23,9 @@ const Header = (props) => {
                 <div className='inner_wrapper'>
                     <div className='section_one'>
                         <div className='menu_icon' onClick={() => setShowSideNav(!showSideNav)}>
-                            <img src={Hamburger} />
+                            <img src={Hamburger} alt='menu' />
                         </div>
-                        <div className='logo'><span className='image_area'><img src={Logo} /></span><span className='txt'>Keep Notes</span></div>
+                        <div className='logo'><span className='image_area'><img src={Logo} alt='logo' /></span><span className='txt'>Keep Notes</span></div>
                     </div>
                     <div className='section_two'>
                         <div className='search'>
@@ -33,13 +33,13 @@ const Header = (props) => {
                         </div>
                         <div className='keep_options'>
                             <div className='mr_24 search_icon' data-tooltip="Search" onClick={() => setMobileSearch(!mobileSearch)}>
-                                <img src={SearchIcon} />
+                                <img src={SearchIcon} alt='search' />
                             </div>
                             <div className='mr_24 refresh_icon' data-tooltip="Refresh" onClick={user.token && getAllNote}>
-                                <img src={Refresh} />
+                                <img src={Refresh} alt='refresh' />
                             </div>
                             <div className='mr_24 grid_icon' data-tooltip={view ? 'List view' : 'Grid view'} onClick={() => setView(!view)}>
-                                <img src={view ? ListView : GridView} />
+                                <img src={view ? ListView : GridView} alt={view ? 'list' : 'grid'} />
                             </div>
                             {/* <div className='mr_24 setting_icon' data-tooltip="Settings">
                                 <img src={Setting} />

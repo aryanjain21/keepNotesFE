@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './side-nav.scss';
 import ColorList from '../../assets/locales/color.json';
 import Notes from '../../assets/icons/notes.svg';
@@ -56,19 +56,19 @@ const SideNav = (props) => {
             <ul className={`nav_list ${showSideNav ? 'show_list' : ''}`}>
                 <li className={`list notes ${user.screen === 'Notes' ? 'active_nav' : ''} ${showSideNav && user.screen === 'Notes' && 'open_view'}`} onClick={() => { handleClick("Notes") }}>
                     <div className='icon'>
-                        <img src={Notes} />
+                        <img src={Notes} alt='notes' />
                     </div>
                     {showSideNav && <span className='txt'>Note</span>}
                 </li>
                 <li className={`list ${user.screen === 'Archive' ? 'active_nav' : ''} ${showSideNav && user.screen === 'Archive' && 'open_view'}`} onClick={() => { handleClick("Archive") }}>
                     <div className='icon'>
-                        <img src={Archive} />
+                        <img src={Archive} alt='archive' />
                     </div>
                     {showSideNav && <span className='txt'>Archive</span>}
                 </li>
                 <li className={`list ${user.screen === 'Trash' ? 'active_nav' : ''} ${showSideNav && user.screen === 'Trash' && 'open_view'}`} onClick={() => { handleClick("Trash") }}>
                     <div className='icon'>
-                        <img src={Trash} />
+                        <img src={Trash} alt='trash' />
                     </div>
                     {showSideNav && <span className='txt'>Trash</span>}
                 </li>

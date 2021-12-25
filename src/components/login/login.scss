@@ -76,6 +76,10 @@
         color: $color_black;
         text-align: center;
         @include font_roboto_medium;
+        .link {
+            cursor: pointer;
+            color: $color_yellow;
+        }
     }
     .guest_user {
         margin-bottom: 4px;

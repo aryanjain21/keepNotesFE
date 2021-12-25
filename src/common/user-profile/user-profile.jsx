@@ -24,7 +24,7 @@ const UserProfile = () => {
             <div className='profile'>{user && user.firstName && user.firstName.charAt(0).toUpperCase()}{user && user.lastName && user.lastName.charAt(0).toUpperCase()}</div>
             <div className='name'>{user.firstName} {user.lastName}</div>
             <div className='email'>{user.email}</div>
-            <div className='section_notes'>{user.screen == 'Notes' ? 'Notes' : user.screen == 'Archive' ? 'Archive Notes' : 'Trash Notes'}: {contextNote.noteCount}</div>
+            <div className='section_notes'>{user.screen === 'Notes' ? 'Notes' : user.screen === 'Archive' ? 'Archive Notes' : 'Trash Notes'}: {contextNote.noteCount}</div>
             <div className='total_notes'>{`Total Notes: ${contextNote.totalNotes}`}</div>
             <div className='btn_area' onClick={handleSignOut}>
                 <button type='submit'>Sign out</button>

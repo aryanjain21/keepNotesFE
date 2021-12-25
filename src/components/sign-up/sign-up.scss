@@ -88,5 +88,9 @@
         color: $color_black;
         text-align: center;
         @include font_roboto_medium;
+        .link {
+            cursor: pointer;
+            color: $color_yellow;
+        }
     }
 }

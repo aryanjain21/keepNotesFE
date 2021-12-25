@@ -14,14 +14,12 @@ const SignUp = (props) => {
 
     const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const InitialValues = {
         firstName: '',
         lastName: '',
         email: '',
-        password: '',
-        confirmPassword: ''
+        password: ''
     };
 
     const ValidationsSchema = yup.object({
@@ -41,13 +39,6 @@ const SignUp = (props) => {
             .matches(
                 /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
                 'Password must contain at least one number, one special character & length must be 6 to 16 character/digits.'
-            ),
-        confirmPassword: yup
-            .string()
-            .required('Please enter confirm password')
-            .matches(
-                /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-                'Confirm Password must contain at least one number, one special character & length must be 6 to 16 character/digits.'
             )
     });
 
@@ -61,7 +52,7 @@ const SignUp = (props) => {
                     try {
                         setLoader(true);
                         let res = await signUp(values);
-                        if (res.data.status == '200') {
+                        if (res.data.status === 200) {
                             toast.success(res.data.message);
                             setLoader(false);
                             let user = res.data.data;
@@ -104,22 +95,10 @@ const SignUp = (props) => {
                             <div className='form_input'>
                                 <Field type={showPassword ? 'text' : 'password'} name='password' placeholder='Password' />
                                 <div className='icon_area' onClick={() => setShowPassword(!showPassword)}>
-                                    <img src={showPassword ? ShowPassword : HidePassword} />
+                                    <img src={showPassword ? ShowPassword : HidePassword} alt='eye' />
                                 </div>
                             </div>
                             <ErrorMessage className='error' name="password" component="div" />
-                        </div>
-                    </div>
-                    <div className='grid_structure'>
-                        <div className='form_control'>
-                            <div className='label'>Confirm Password</div>
-                            <div className='form_input'>
-                                <Field type={showConfirmPassword ? 'text' : 'password'} name='confirmPassword' placeholder='Password' />
-                                <div className='icon_area' onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                                    <img src={showConfirmPassword ? ShowPassword : HidePassword} />
-                                </div>
-                            </div>
-                            <ErrorMessage className='error' name="confirmPassword" component="div" />
                         </div>
                     </div>
                     <div className='btn_area'>
@@ -127,7 +106,7 @@ const SignUp = (props) => {
                     </div>
                 </Form>
             </Formik>
-            <div className='sign_in_link'>Already have an Account? <a className='link' onClick={() => setSignUp(false)}>Sign In</a></div>
+            <div className='sign_in_link'>Already have an Account? <span className='link' onClick={() => setSignUp(false)}>Sign In</span></div>
         </div>
     );
 }

@@ -3,7 +3,6 @@ import React, { useReducer, useContext } from 'react';
 const NoteContext = React.createContext();
 
 const noteReducer = (state, action) => {
-    console.log('action', action.type, action.payload)
     switch (action.type) {
         case 'ADD':
             return {

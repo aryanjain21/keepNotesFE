@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './note.scss';
 import ColorList from '../../assets/locales/color.json';
 import Pin from '../../assets/icons/pin.svg';
@@ -18,8 +18,8 @@ const Note = (props) => {
 
     const handleInput = (inputType) => {
         setNote({
-            title: inputType.key == 'title' ? inputType.value : note.title,
-            note: inputType.key == 'note' ? inputType.value : note.note,
+            title: inputType.key === 'title' ? inputType.value : note.title,
+            note: inputType.key === 'note' ? inputType.value : note.note,
             isArchived: note.isArchived,
             isPinned: note.isPinned
         });
@@ -52,9 +52,9 @@ const Note = (props) => {
         <div className='note_container'>
             <OutsideClickHandler onOutsideClick={onOutsideClick}>
                 <div className='note_wrapper'>
-                    <div className='pin_note' onClick={handlePinned}><img src={note.isPinned ? Pinned : Pin} /></div>
-                    <input style={{backgroundColor: colorList[selectedColor -1].color}} className='title_section text_1' name="title" id="title" rows='1' placeholder='Title' value={note.title} onChange={(e) => handleInput({ key: 'title', value: e.target.value })} />
-                    <textarea style={{backgroundColor: colorList[selectedColor -1].color}}  className='title_section note_area' rows={1} name="note" id="note" placeholder='Take a note...' autoFocus value={note.note} onChange={(e) => handleInput({ key: 'note', value: e.target.value })}></textarea>
+                    <div className='pin_note' onClick={handlePinned}><img src={note.isPinned ? Pinned : Pin} alt='pin' /></div>
+                    <input style={{backgroundColor: colorList[selectedColor -1].color}} className='title_section text_1' name="title" id="title" rows='1' placeholder='Title' value={note.title} onChange={(e) => handleInput({ key: 'title', value: e?.target?.value })} />
+                    <textarea style={{backgroundColor: colorList[selectedColor -1].color}}  className='title_section note_area' rows={1} name="note" id="note" placeholder='Take a note...' autoFocus value={note.note} onChange={(e) => handleInput({ key: 'note', value: e?.target?.value })}></textarea>
                     <NoteAction colorList={colorList} note={note} setNote={setNote} selectedColor={selectedColor} onOutsideClick={onOutsideClick} handleInput={handleInput} handleColor={handleColor} />
                 </div>
             </OutsideClickHandler>

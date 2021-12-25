@@ -15,19 +15,19 @@ const NoteAction = (props) => {
 
     const { user } = useUser();
     const { noteDispatch } = useNote();
-    const { colorList, note, setNote, selectedColor, onOutsideClick, handleInput, handleColor, updateNotes, listView, updatedArchive, setLoader } = props;
+    const { colorList, note, selectedColor, onOutsideClick, handleColor, updateNotes, listView, updatedArchive, setLoader, updateNotess } = props;
     const [showColor, setShowColor] = useState(false);
 
     const updateColor = (id) => {
         updateNotes({
             _id: note._id,
             color: colorList[id - 1].key
-        })
+        });
     }
 
     const archiveHandler = (archiveNote) => {
         if (listView) {
-            updatedArchive(archiveNote)
+            updatedArchive(archiveNote);
         }
     }
 
@@ -45,7 +45,7 @@ const NoteAction = (props) => {
             let res = await deleteNote({ noteId: deleteId });
             toast.success(res.data.message);
             setLoader(false);
-            noteDispatch({type: 'DELETE', payload: deleteId})
+            noteDispatch({type: 'DELETE', payload: deleteId});
         } catch (error) {
             setLoader(false);
         }
@@ -57,16 +57,16 @@ const NoteAction = (props) => {
                 <ColorPicker listView={listView} noteId={note._id} colorList={colorList} handleColor={handleColor} updateColor={updateColor} />
             </div>
             {user.screen !== 'Trash' ?
-                <div className='icon paint_icon'><img src={Paint} onMouseOver={() => setShowColor(!showColor)} /></div>
+                <div className='icon paint_icon'><img src={Paint} alt='paint' onMouseOver={() => setShowColor(!showColor)} /></div>
                 :
-                <div className='icon paint_icon' onClick={() => handleDeleteNote(note._id)}><img src={Delete} /></div>
+                <div className='icon paint_icon' onClick={() => handleDeleteNote(note._id)}><img src={Delete} alt='delete' /></div>
             }
-            {user.screen == 'Notes' ?
-                <div className='icon archive_icon' onClick={() => archiveHandler(note)}><img src={Archive} /></div>
+            {user.screen === 'Notes' ?
+                <div className='icon archive_icon' onClick={() => archiveHandler(note)}><img src={Archive} alt='archive' /></div>
                 :
-                <div className='icon archive_icon' onClick={() => unarchiveHandler(note)}><img src={Restore} /></div>
+                <div className='icon archive_icon' onClick={() => unarchiveHandler(note)}><img src={Restore} alt='restore' /></div>
             }
-            {user.screen !== 'Trash' && (listView ?
+            {user.screen !== 'Trash' && ((!updateNotess && listView) ?
                 <div className='icon trash_icon' onClick={() => {
                     updateNotes({
                         _id: note._id,
@@ -74,7 +74,7 @@ const NoteAction = (props) => {
                         isPinned: 0,
                         isArchived: 0
                     })
-                }}><img src={Trash} /></div>
+                }}><img src={Trash} alt='trash' /></div>
                 :
                 <div className='close' onClick={onOutsideClick}>Close</div>)
             }

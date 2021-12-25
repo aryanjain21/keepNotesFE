@@ -16,7 +16,7 @@ import axios from 'axios';
         if (error.response) {
             if (error.response.status === 401) {
                 localStorage.removeItem('setUser');
-                // typeof window !== 'undefined' && window.location.reload();
+                typeof window !== 'undefined' && window.location.reload();
                 return Promise.reject(error);
             } else return Promise.reject(error);
         } else if (error.request) {

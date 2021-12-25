@@ -22,10 +22,10 @@ const SearchBar = (props) => {
                 section: {},
                 search: ''
             };
-            if (user.screen == 'Notes') {
+            if (user.screen === 'Notes') {
                 searchObj.section.isActive = 1
                 searchObj.section.isArchived = 0
-            } else if (user.screen == 'Archive') {
+            } else if (user.screen === 'Archive') {
                 searchObj.section.isActive = 1
                 searchObj.section.isArchived = 1
             } else {
@@ -34,7 +34,7 @@ const SearchBar = (props) => {
             searchObj.search = value
             setLoader(true);
             const res = await getNotes(searchObj);
-            if (res.data.status == '200') {
+            if (res.data.status === 200) {
                 setLoader(false);
                 res.data.data.map(note => {
                     note.color = note.color ? ColorList.find(color => color.key === note.color).id : 1
