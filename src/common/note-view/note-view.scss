@@ -60,6 +60,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        h2 {
+            width: 100%;
+            display: block;
+        }
         .note_section {
             margin: 0 0 12px;
             &:nth-child(even) {
@@ -67,6 +71,7 @@
             }
             @include breakpoint(sm) {
                 width: 45%;
+                height: 100%;
             }
             @include breakpoint(md) {
                 width: 46%;
@@ -81,9 +86,6 @@
         }
         @include breakpoint(md) {
             width: 75%;
-        }
-        @include breakpoint(lg) {
-            justify-content: unset;
         }
     }
     @include breakpoint(sm) {

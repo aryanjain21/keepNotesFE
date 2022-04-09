@@ -65,6 +65,7 @@ const NoteView = (props) => {
                     </div>
                 </div>
             })}
+            <>
             {pinnedNotes?.length > 0 && otherNotes?.length > 0 && <h2>Other Notes</h2>}
             {otherNotes?.length > 0 && otherNotes.map((element, index) => {
                 return <div className='note_section' style={{ backgroundColor: colorList[element.color - 1].color }} key={element._id}>
@@ -84,6 +85,7 @@ const NoteView = (props) => {
                     </div>
                 </div>
             })}
+            </>
             {updateNotess && handleModal(handleNote.element, handleNote.id)}
         </div>
     );
