@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './login.scss';
 import ShowPassword from '../../assets/icons/open_eye.svg';
 import HidePassword from '../../assets/icons/close_eye.svg';
@@ -7,10 +7,11 @@ import * as yup from 'yup';
 import { useUser } from '../../context/userContext';
 import { signIn } from '../../services/api';
 import { toast } from 'react-toastify';
+import RingLoader from "react-spinners/RingLoader";
 
 const Login = (props) => {
 
-    const { signUp, setSignUp, handleRequestCloseFunc, setLoader } = props;
+    const { signUp, setSignUp, handleRequestCloseFunc, setLoader, loader } = props;
     const { userDispatch } = useUser();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -23,8 +24,8 @@ const Login = (props) => {
         email: yup
             .string()
             .trim()
-            .required('Please enter email')
-            .email('Please enter a valid email'),
+            .email('Please enter a valid email')
+            .required('Please enter email'),
         password: yup
             .string()
             .trim()
@@ -34,6 +35,10 @@ const Login = (props) => {
                 'Password must contain at least one number, one special character & length must be 6 to 16 character/digits.'
             )
     });
+
+    useEffect(() => {
+        document && document.getElementById('name').blur();
+    }, []);
 
     const guestLogin = async () => {
         try {
@@ -83,7 +88,7 @@ const Login = (props) => {
                     <div className='form_control'>
                         <div className='label'>Email Id</div>
                         <div className='form_input'>
-                            <Field type="text" name='email' placeholder='Eg:abc@gmail.com' />
+                            <Field id='name' type="text" name='email' placeholder='Eg:abc@gmail.com' />
                         </div>
                         <ErrorMessage className='error' name="email" component="div" />
                     </div>
@@ -106,6 +111,13 @@ const Login = (props) => {
                 Are you <span className='link' onClick={guestLogin}>Guest User</span> ?
             </div>
             <div className='sign_up_link'>Don’t have an Account yet ? <span className='link' onClick={() => setSignUp(!signUp)}>Sign Up</span></div>
+            <RingLoader css={`position: fixed;
+                                top: 0;
+                                right: 0;
+                                bottom: 0;
+                                left: 0;
+                                margin: auto;`}
+                size={75} color={"#FFBF00"} loading={loader} speedMultiplier={1} />
         </div>
     );
 }

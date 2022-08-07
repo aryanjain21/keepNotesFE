@@ -131,7 +131,7 @@ const KeepNotes = () => {
                     </div>
                 </div>
             </div>
-            <CustomModal signUp={signUp} children={signUp ? <SignUp setLoader={setLoader} setSignUp={setSignUp} handleRequestCloseFunc={handleRequestCloseFunc} /> : <Login signUp={signUp} setSignUp={setSignUp} setLoader={setLoader} handleRequestCloseFunc={handleRequestCloseFunc} />} handleRequestCloseFunc={handleRequestCloseFunc} modalIsOpen={modalIsOpen} />
+            <CustomModal signUp={signUp} children={signUp ? <SignUp setLoader={setLoader} setSignUp={setSignUp} handleRequestCloseFunc={handleRequestCloseFunc} /> : <Login signUp={signUp} setSignUp={setSignUp} loader={loader} setLoader={setLoader} handleRequestCloseFunc={handleRequestCloseFunc} />} handleRequestCloseFunc={handleRequestCloseFunc} modalIsOpen={modalIsOpen} />
             <RingLoader css={`position: fixed;
                                 top: 0;
                                 right: 0;
